@@ -59,6 +59,11 @@ def _update_repository(rev):
     run("git checkout {}".format(rev))
     run("git reset --hard {}".format(rev))
 
+def update_crontab():
+    crontab_file = os.path.join(CODE_DIR, "deploy/config/mediacloud.crontab")
+    with settings(user=USER):
+        run('crontab {}'.format(crontab_file))
+
 def create_deploy_user():
     with settings(warn_only=True):
         user_does_not_exist = run("id {}".format(USER)).failed
@@ -108,4 +113,5 @@ def deploy(rev=None):
             _update_code(rev)
             run("pip install -r requirements.txt")
 
+    update_crontab()
     sudo("supervisorctl reload")
