@@ -7,4 +7,3 @@
 10 */2 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_crawler_oglobo.sh
 10 */2 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_crawler_folha.sh
 10 */2 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_crawler_estadao.sh
-02 2,6,10,14,18,22 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_indexer.sh
