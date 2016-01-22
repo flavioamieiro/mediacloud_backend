@@ -2,7 +2,7 @@
 import os
 import random
 
-from fabric.api import cd, run, sudo, settings, prompt, prefix, local
+from fabric.api import cd, run, sudo, settings, prompt, prefix, local, env
 from fabric.contrib.files import exists
 
 USER = "mediacloud"
@@ -71,6 +71,12 @@ def create_deploy_user():
         sudo("mkdir {}".format(PROJECT_ROOT))
         sudo("chown -R {0}:{0} {1}".format(USER, PROJECT_ROOT))
         sudo("passwd {}".format(USER))
+        existing_keys_path = os.path.join("~{0}".format(env.user), '.ssh/authorized_keys')
+        new_keys_path = os.path.join("~{0}".format(USER), '.ssh/authorized_keys')
+        sudo("mkdir {0}".format(os.path.dirname(new_keys_path)))
+        sudo("cp {0} {1}".format(existing_keys_path, new_keys_path))
+        sudo("chown -R {0}:{0} {1}".format(USER,
+            os.path.dirname(new_keys_path)))
         _create_database_config()
 
 def install_system_packages():
