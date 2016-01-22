@@ -1,0 +1,10 @@
+# m h  dom mon dow   command
+00 */4 * * * pkill --signal 9 -f downloader.py
+02 */4 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_downloader.sh
+30 */1 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_googlerss.sh
+45 */3 * * * pkill --signal 9 -f extract_feeds.py
+47 */3 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_extract_feeds.sh
+10 */2 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_crawler_oglobo.sh
+10 */2 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_crawler_folha.sh
+10 */2 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_crawler_estadao.sh
+02 2,6,10,14,18,22 * * * /srv/mediacloud/mediacloud_backend/mediacloud_backend/run_scripts/run_indexer.sh
